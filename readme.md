@@ -9,7 +9,9 @@
 
 ## Description
 
-A really awesome starting point for creating bespoke websites.
+A really awesome starting point for creating bespoke WordPress websites.
+
+Uses Gulp for asset compilation and browsersync, but is otherwise a simple 'traditional' WP boilerplate. No build processes for working with React-based Gutenberg blocks, this uses ACF for custom block creation. No Bedrock or other Composer-based PHP dependency management either - just add plugins via admin UI as normal and leverage Manage WP for an easier maintenance workflow.
 
 ## Docs
 
