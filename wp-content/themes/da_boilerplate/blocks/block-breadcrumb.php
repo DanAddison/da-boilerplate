@@ -1,23 +1,24 @@
 <?php
 function da_boilerplate_breadcrumb() {
-    echo '<a href="'.home_url().'" rel="nofollow">Home</a>';
-    if (is_category() || is_single()) {
-        echo "&nbsp;&nbsp;&#187;&nbsp;&nbsp;";
-        the_category(' &bull; ');
-            if (is_single()) {
-                echo " &nbsp;&nbsp;&#187;&nbsp;&nbsp; ";
-                the_title();
-            }
-    } elseif (is_page()) {
-        echo "&nbsp;&nbsp;&#187;&nbsp;&nbsp;";
-        echo the_title();
-    } elseif (is_search()) {
-        echo "&nbsp;&nbsp;&#187;&nbsp;&nbsp;Search Results for... ";
-        echo '"<em>';
-        echo the_search_query();
-        echo '</em>"';
-    }
+    global $post; ?>
+    <a href="<?php home_url(); ?>" rel="nofollow">Home</a>
+    <?php
+    if (is_category() || is_single()) : ?>
+    
+        <span> > <?php the_category( '&bull;' ); ?></span>
+            <?php if (is_single()) : ?>
+            <span> > <?php the_title(); ?></span>
+            <?php endif;
+        
+        elseif (is_page()) : ?>
+        <?php if( $post->post_parent ) : ?><a href="<?php echo get_permalink( $post->post_parent ); ?>"> > <?php echo get_the_title( $post->post_parent ); ?></a>
+            <span><?php endif; ?> > <?php the_title(); ?></span>
+     
+        <?php
+        elseif (is_search()) : ?>
+        <span> Search Results for... <em><?php the_search_query(); ?></em></span>
+        
+        <?php endif;
 }
 ?>
-
 <p class="block block-breadcrumb"><?php da_boilerplate_breadcrumb(); ?></p>
