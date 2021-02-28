@@ -17,4 +17,16 @@ if ( ! function_exists( 'da_boilerplate_post_meta' ) ) :
 
 <?php } 
 endif;
-?>
+
+// shorthand way to get path to a theme folder
+function da_template_path($where = false) {
+	echo get_template_directory_uri();
+
+	if($where == 'images') {
+		echo '/assets/images/';
+	}
+
+	if($where == 'sprite') {
+		echo '/assets/img/feather-sprite.svg';
+	}
+}
