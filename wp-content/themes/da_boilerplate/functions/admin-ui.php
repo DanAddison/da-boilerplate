@@ -13,13 +13,15 @@ if( function_exists('acf_add_options_page') ) {
 	
 }
 
-
 /**
- * Other admin menu adjustments
+ * Removes some menus by page.
  */
-add_action( 'admin_menu', function(){
-	/** Remove items from the main menu for non-Administrators */
-	if( !user_has_role( 'administrator' ) ) {
-		remove_menu_page( 'tools.php' );
+function da_boilerplate_remove_menus(){
+
+    if( !user_has_role( 'administrator' ) ) {
+        remove_menu_page( 'edit-comments.php' ); //Comments
+		remove_menu_page( 'tools.php' ); //Tools
 	}
-});
+
+}
+add_action( 'admin_menu', 'da_boilerplate_remove_menus' );
